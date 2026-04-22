@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Offline | English AI</title>
+  <style>
+    :root {
+      --background: #f8fafc;
+      --foreground: #1e1b4b;
+      --primary: #4f46e5;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #1e1b4b;
+        --foreground: #f8fafc;
+        --primary: #818cf8;
+      }
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+    }
+    p {
+      opacity: 0.8;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+    }
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="icon">✈️</div>
+  <h1>You're Offline</h1>
+  <p>It seems you've lost your internet connection. We need an active connection to generate AI lessons and sync your progress.</p>
+  <button onclick="window.location.reload()">Try Again</button>
+</body>
+</html>
