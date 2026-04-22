@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Users ────────────────────────────────────────────────────────────────
+    // Each user can only read/write their own document
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      // Sessions subcollection
+      match /sessions/{sessionId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // Dedup hashes subcollection
+      match /dedupHashes/{hash} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // Weaknesses subcollection
+      match /weaknesses/{weaknessId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // ─── Leaderboard ──────────────────────────────────────────────────────────
+    // Anyone authenticated can read the leaderboard
+    // Users can only write to their own leaderboard entry
+    match /leaderboard/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // ─── Word of the Day ──────────────────────────────────────────────────────
+    // Public read (used on dashboard before full auth check)
+    // Only server (API route with admin SDK) writes — but we use client SDK
+    // So allow authenticated writes too
+    match /wordOfDay/{date} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // ─── Guilds ───────────────────────────────────────────────────────────────
+    match /guilds/{guildId} {
+      allow read, create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null && request.auth.uid == resource.data.ownerId;
+    }
+
+    // ─── Posts ────────────────────────────────────────────────────────────────
+    match /posts/{postId} {
+      allow read, create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null && request.auth.uid == resource.data.authorId;
+    }
+
+    // ─── Deny everything else ─────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
