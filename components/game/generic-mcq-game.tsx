@@ -134,7 +134,7 @@ export function GenericMCQGame({ modeId, title, description, questionCount = 5 }
         total={questions?.length || 0}
         xpEarned={xpEarned}
         onRetry={startGame}
-        nextUrl="/dashboard/games"
+        nextUrl="/dashboard"
         analysis={analysis}
         analyzing={analyzing}
       />

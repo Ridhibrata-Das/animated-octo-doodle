@@ -145,7 +145,7 @@ export function ChatRoleplayGame() {
         total={questions?.length || 0}
         xpEarned={xpEarned}
         onRetry={() => { resetMessages(); startGame(); }}
-        nextUrl="/dashboard/games"
+        nextUrl="/dashboard"
         analysis={analysis}
         analyzing={analyzing}
       />

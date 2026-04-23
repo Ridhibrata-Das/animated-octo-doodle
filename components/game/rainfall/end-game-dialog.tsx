@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { RotateCcw, Trophy, X } from "lucide-react"
+import { RotateCcw, Trophy, X, Home } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 interface EndGameDialogProps {
   open: boolean
@@ -24,6 +25,7 @@ export function EndGameDialog({
   startGame,
   container,
 }: EndGameDialogProps) {
+  const router = useRouter()
   const totalAttempts = correctCount + wrongCount
   const accuracy = totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : 0
 
@@ -62,9 +64,9 @@ export function EndGameDialog({
         </div>
 
         <DialogFooter className="flex gap-2">
-          <Button variant="outline" onClick={resetGame} className="gap-2 bg-transparent">
-            <X className="h-4 w-4" />
-            Close
+          <Button variant="outline" onClick={() => router.push('/dashboard')} className="gap-2 bg-transparent">
+            <Home className="h-4 w-4" />
+            End Session
           </Button>
           <Button
             onClick={() => {

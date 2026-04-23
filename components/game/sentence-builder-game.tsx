@@ -140,7 +140,7 @@ export function SentenceBuilderGame() {
         total={questions?.length || 0}
         xpEarned={xpEarned}
         onRetry={startGame}
-        nextUrl="/dashboard/games"
+        nextUrl="/dashboard"
       />
     );
   }

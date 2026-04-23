@@ -79,7 +79,7 @@ export function GameShell({ title, description, children, onBack, currentQuestio
 
   const handleBack = () => {
     if (onBack) onBack();
-    else router.push('/dashboard/games');
+    else router.push('/dashboard');
   };
 
   if (isAllowed === null) return <div className="min-h-screen bg-background" />; // loading
@@ -88,7 +88,7 @@ export function GameShell({ title, description, children, onBack, currentQuestio
     <div className="min-h-screen bg-background flex flex-col">
       <PaymentModal 
         isOpen={showPayment} 
-        onClose={() => router.push('/dashboard/games')}
+        onClose={() => router.push('/dashboard')}
         onSuccess={() => {
           setShowPayment(false);
           setIsAllowed(true);
@@ -145,7 +145,7 @@ export function GameShell({ title, description, children, onBack, currentQuestio
                   You survived the full 4 minutes! Your progress and XP have been recorded. Excellent job!
                 </p>
                 <Button 
-                  onClick={() => router.push('/dashboard/games')}
+                  onClick={() => router.push('/dashboard')}
                   className="h-14 px-8 rounded-full text-lg font-bold"
                 >
                   Return to Dashboard

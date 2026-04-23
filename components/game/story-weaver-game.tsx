@@ -142,7 +142,7 @@ export function StoryWeaverGame() {
         total={questions?.length || 0}
         xpEarned={xpEarned}
         onRetry={startGame}
-        nextUrl="/dashboard/games"
+        nextUrl="/dashboard"
       >
         {!hasPublished ? (
           <Button 
